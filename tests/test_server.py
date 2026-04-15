@@ -2,6 +2,7 @@ import json
 import threading
 import urllib.error
 import urllib.request
+from typing import Optional, Tuple
 
 import pytest
 
@@ -25,7 +26,7 @@ def _get(url: str) -> dict:
         return json.loads(resp.read())
 
 
-def _post(url: str, data: dict | None = None) -> tuple[int, dict]:
+def _post(url: str, data: Optional[dict] = None) -> Tuple[int, dict]:
     body = json.dumps(data or {}).encode()
     req = urllib.request.Request(
         url,
